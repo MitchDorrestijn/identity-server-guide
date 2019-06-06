@@ -1,2 +1,4 @@
 # identity-server-guide
-This repository contains tips, tricks and how-to guides for IdentityServer4
+This repository contains tips, tricks and how-to guides for IdentityServer4.
+
+## Table of contents
