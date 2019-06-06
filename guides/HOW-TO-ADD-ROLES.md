@@ -42,7 +42,7 @@ Now you can build and run your IdentityServer project and look in the database. 
 
 IdentityServer4 will generate a JSON-web-token (JWT) once you logged in successfully. This JWT consists of claims. If you copy the contents of the [secure page](https://gitlab.com/kubernerds/workshop-identityserver-4/blob/master/part4_client/InsideAirbnb/Views/Home/Secure.cshtml) from the Kubernerds workshop, log in and navigate to that page you can see that the default claims are `sid`, `sub`, `idp`, `preferred_username` and `name`.
 
-//image hier
+![](../images/roleguide/defaultClaims.jpg)
 
 We need to add the `Role` claim to this list of claims. In order to do this create a new folder within your IdentityServer project called `Services`. In here we will create a new class called `ProfileService.cs`. This class will have to implement the interface `IProfileService`
 
@@ -133,9 +133,9 @@ services.AddAuthentication(options => {
 
 Make sure you build both your InsideAirbnb project and the IdentityServer project. If you login with the account you made admin you will see that the roles are added to the permission page. Once you inspect the claims on the Secure page you will see that that the role key is present.
 
-//Image of the permissions page
+![](../images/roleguide/rolePermission.jpg)
 
-//Image of the claims overview page
+![](../images/roleguide/roleInClaims.jpg)
 
 ## Restricting access
 In order to restrict access to a entire route you can add the following on top of the route definition: `[Authorize(Roles = "Admin")]`. In order to check if a user has a specific role within the razor page you can include an if statement like so.
