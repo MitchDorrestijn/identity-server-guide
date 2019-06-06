@@ -1,6 +1,6 @@
 # Role based authorization with IdentityServer4
 
-In this tutorial we will explain how you can add roles to your IdentityServer4 project.
+In this tutorial I will explain how you can add roles to your IdentityServer4 project.
 
 ## Before you begin
 - Make sure you followed the [Kubernerds workshop](https://gitlab.com/kubernerds/workshop-identityserver-4/tree/master) on how to get started with IdentityServer4.
@@ -62,7 +62,7 @@ public class ProfileService : IProfileService {
     }
 }
 ```
-Next we need to tell IdentityServer to call this class everytime we request role data. In order to do this we will have too add the following line in our `Startup.cs` file within the `ConfigureServices(IServiceCollection services)` method.
+Next we need to tell IdentityServer to call this class everytime we request role data. In order to do this we will have to add the following line in our `Startup.cs` file within the `ConfigureServices(IServiceCollection services)` method.
 
 ```csharp
 services.AddTransient<IProfileService, ProfileService>();
@@ -122,7 +122,9 @@ services.AddAuthentication(options => {
 })
 .AddCookie("Cookies")
 .AddOpenIdConnect("oidc", options => {
+
     //Details omitted for simplicity
+
     options.Scope.Add("roles"); //Add this
     options.ClaimActions.MapJsonKey("role", "role", "role"); //And this
     options.TokenValidationParameters.RoleClaimType = "role"; //And also this
@@ -151,7 +153,7 @@ if(User.IsInRole("Admin")) {
   <p>Only a user thats admin will see this + the paragraphs above</p>
 }
 ```
-Note: `Admin` will work here but not `ADMIN` or `admin`. It's case sensitive.
+Note: `Admin` will work here but not `ADMIN` nor `admin`. It's case sensitive.
 
 ## Older IdentityServers
 If you use IdentityServer3 or lower you will have to update the `[AspNetUsers]` table and set the value of the `[EmailConfirmed]` column to true in order for this to work.
